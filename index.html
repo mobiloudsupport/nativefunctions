@@ -1,0 +1,55 @@
+<html>
+	<head>
+	<title>Link MobiLoud Account</title>
+	</head>
+	
+	<script type="text/javascript">
+	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
+
+	if (isApp) {
+	window.onload = function() {
+	var id = '250406';
+	var now = new Date();
+
+	try {
+	// nativeFunctions.onesignalSetExternalUserId(id);
+
+	// Triggers the native function for iOS WebKit
+	if (window.webkit != undefined) {
+	if (window.webkit.messageHandlers.callbackHandler != undefined) {
+	window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
+	}
+	}
+	// Triggers the native function for Android
+	if (window.nativeFunctions != undefined) {
+	onesignalSetExternalUserId(id)
+	}
+
+	var span = document.getElementById('response');
+	span.textContent = 'External user ID ' + id + ' set at ' + now;
+	}
+	catch (ex) {
+
+	var span = document.getElementById('response');
+	span.textContent = 'Error: ' + ex.message;
+	}
+	}
+	}
+	else {
+	window.onload = function() {
+	var span = document.getElementById('response');
+	span.textContent = 'External user ID NOT set - try from our app';
+	}
+	}
+	</script>
+
+	</head>
+
+	<body>
+
+	Linking to MobiLoud from the links page...<br>
+	<span id="response"></span>
+
+	</body>
+
+</html>
