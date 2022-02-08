@@ -7,39 +7,42 @@
 	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
 
 	if (isApp) {
-	window.onload = function() {
-	var id = '250406';
-	var now = new Date();
+		window.onload = function() {
+			var id = '250406';
+			var now = new Date();
 
-	try {
-	// nativeFunctions.onesignalSetExternalUserId(id);
+			try {
+				// nativeFunctions.onesignalSetExternalUserId(id);
+				alert('try');
+				// Triggers the native function for iOS WebKit
+				if (window.webkit != undefined) {
+					alert('webkit worked');
+					if (window.webkit.messageHandlers.callbackHandler != undefined) {
+						alert('webkit full worked');
+						window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
+					}
+				}
+				// Triggers the native function for Android
+				if (window.nativeFunctions != undefined) {
+					alert('Android worked');
+					onesignalSetExternalUserId(id)
+				}
 
-	// Triggers the native function for iOS WebKit
-	if (window.webkit != undefined) {
-	if (window.webkit.messageHandlers.callbackHandler != undefined) {
-	window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
-	}
-	}
-	// Triggers the native function for Android
-	if (window.nativeFunctions != undefined) {
-	onesignalSetExternalUserId(id)
-	}
-
-	var span = document.getElementById('response');
-	span.textContent = 'External user ID ' + id + ' set at ' + now;
-	}
-	catch (ex) {
-
-	var span = document.getElementById('response');
-	span.textContent = 'Error: ' + ex.message;
-	}
-	}
+				var span = document.getElementById('response');
+				span.textContent = 'External user ID ' + id + ' set at ' + now;
+			}
+			catch (ex) {
+				alert('catch');
+				var span = document.getElementById('response');
+				span.textContent = 'Error: ' + ex.message;
+			}
+		}
 	}
 	else {
-	window.onload = function() {
-	var span = document.getElementById('response');
-	span.textContent = 'External user ID NOT set - try from our app';
-	}
+		window.onload = function() {
+			var span = document.getElementById('response');
+			span.textContent = 'External user ID NOT set - try from our app';
+		}
 	}
 	</script>
 
