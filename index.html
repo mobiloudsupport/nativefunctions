@@ -21,10 +21,8 @@
 					onesignalSetExternalUserId(id)
 				} else {
 					status.textContent = 'webkit: ok;';
-					if (window.webkit.messageHandlers.callbackHandler != undefined) {
-						status.textContent = 'webkit full: ok;';
-						window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
-					}
+					status.textContent = 'webkit full: ok;';
+					window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
 				}
 
 				var span = document.getElementById('response');
