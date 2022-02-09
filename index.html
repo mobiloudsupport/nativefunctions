@@ -14,17 +14,8 @@
 
 			if (window.nativeFunctions != undefined) {
 				status.textContent = 'entered ok';
-				onesignalSetExternalUserId(id)
+				onesignalSetExternalUserId(id);
 			}
-
-			var span = document.getElementById('response');
-			span.textContent = 'External user ID ' + id + ' set at ' + now;
-		}
-	}
-	else {
-		window.onload = function() {
-			var span = document.getElementById('response');
-			span.textContent = 'External user ID NOT set - try from our app';
 		}
 	}
 	</script>
