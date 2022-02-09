@@ -12,27 +12,17 @@
 			var now = new Date();
 			var status = document.getElementById('status');
 
-			try {
-				// nativeFunctions.onesignalSetExternalUserId(id);
-				// Triggers the native function for iOS WebKit
-				status.textContent = 'try: ok;';
-				if (window.nativeFunctions != undefined) {
-					status.textContent = 'android: ok;';
-					onesignalSetExternalUserId(id)
-				} else {
-					status.textContent = 'webkit: ok;';
-					status.textContent = 'webkit full: ok;';
-					window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
-				}
+			if (window.nativeFunctions != undefined) {
+				status.textContent = 'android: ok;';
+				onesignalSetExternalUserId(id)
+			} else {
+				status.textContent = 'webkit: ok;';
+				status.textContent = 'webkit full: ok;';
+				window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
+			}
 
-				var span = document.getElementById('response');
-				span.textContent = 'External user ID ' + id + ' set at ' + now;
-			}
-			catch (ex) {
-				status.textContent = 'catch: ok;';
-				var span = document.getElementById('response');
-				span.textContent = 'Error: ' + ex.message;
-			}
+			var span = document.getElementById('response');
+			span.textContent = 'External user ID ' + id + ' set at ' + now;
 		}
 	}
 	else {
