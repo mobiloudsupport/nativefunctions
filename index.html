@@ -10,19 +10,22 @@
 		window.onload = function() {
 			var id = '1';
 			var now = new Date();
-
+			var status = document.getElementById('status');
 
 			try {
 				// nativeFunctions.onesignalSetExternalUserId(id);
 				// Triggers the native function for iOS WebKit
+				status.textContent = 'try: ok;';
 				if (window.webkit != undefined) {
+					status.textContent = 'webkit: ok;';
 					if (window.webkit.messageHandlers.callbackHandler != undefined) {
+						status.textContent = 'webkit full: ok;';
 						window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
 					}
 				}
 				// Triggers the native function for Android
 				if (window.nativeFunctions != undefined) {
-					alert('Android worked');
+					status.textContent = 'android: ok;';
 					onesignalSetExternalUserId(id)
 				}
 
@@ -30,6 +33,7 @@
 				span.textContent = 'External user ID ' + id + ' set at ' + now;
 			}
 			catch (ex) {
+				status.textContent = 'catch: ok;';
 				var span = document.getElementById('response');
 				span.textContent = 'Error: ' + ex.message;
 			}
@@ -49,6 +53,7 @@
 
 	Linking to MobiLoud from the links page...<br>
 	<span id="response"></span>
+	<span id="status"></span>
 
 	</body>
 
