@@ -5,12 +5,17 @@
 	
 	<script type="text/javascript">
 	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
-	var id = "5";
+	var id = "6";
 
-	if (isApp) {
-		if (window.nativeFunctions != undefined) {
-			nativeFunctions.onesignalSetExternalUserId(id);
+	try {
+		if (isApp) {
+			if (window.nativeFunctions != undefined) {
+				nativeFunctions.onesignalSetExternalUserId(id);
+			}
 		}
+	} catch (ex) {
+		var span = document.getElementById('response');
+		span.textContent = 'Error: ' + ex.message;
 	}
 	</script>
 
