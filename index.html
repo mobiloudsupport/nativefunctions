@@ -5,9 +5,12 @@
 	
 	<script type="text/javascript">
 	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
+	var id = "5";
 
 	if (isApp) {
-		nativeFunctions.onesignalSetExternalUserId("4");
+		if (window.nativeFunctions != undefined) {
+			nativeFunctions.onesignalSetExternalUserId(id);
+		}
 	}
 	</script>
 
