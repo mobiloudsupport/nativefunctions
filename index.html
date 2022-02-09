@@ -1,32 +1,26 @@
 <html>
-	<head>
-	<title>Link MobiLoud Account</title>
-	</head>
-	
-	<script type="text/javascript">
+<head>
+<script type="text/javascript"> 
 	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
-	var id = "6";
-
+	var extid = "1";
+	var work = "dunno";
 	try {
 		if (isApp) {
 			if (window.nativeFunctions != undefined) {
-				nativeFunctions.onesignalSetExternalUserId(id);
+				nativeFunctions.onesignalSetExternalUserId(extid);
+				work = "success";
 			}
 		}
 	} catch (ex) {
 		var span = document.getElementById('response');
 		span.textContent = 'Error: ' + ex.message;
+		console.log(span.textContent);
+		work = "failed";
 	}
 	</script>
-
-	</head>
-
-	<body>
-
-	Linking to MobiLoud from the links page...<br>
-	<span id="response"></span>
-	<span id="status"></span>
-
-	</body>
-
+</head>
+<body>
+IsApp:<script>document.write(isApp);</script><br/>
+Does it work? <script>document.write(work);</script>
+</body>
 </html>
