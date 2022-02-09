@@ -12,10 +12,7 @@
 			var now = new Date();
 			var status = document.getElementById('status');
 
-			if (window.nativeFunctions != undefined) {
-				status.textContent = 'entered ok';
-				onesignalSetExternalUserId("4");
-			}
+			onesignalSetExternalUserId("4");
 		}
 	}
 	</script>
