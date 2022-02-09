@@ -8,16 +8,12 @@
 
 	if (isApp) {
 		window.onload = function() {
-			var id = '2';
+			var id = '3';
 			var now = new Date();
 			var status = document.getElementById('status');
 
 			if (window.nativeFunctions != undefined) {
-				status.textContent = 'android: ok;';
-				onesignalSetExternalUserId(id)
-			} else {
-				status.textContent = 'webkit: ok;';
-				status.textContent = 'webkit full: ok;';
+				status.textContent = 'entered: ok;';
 				window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
 			}
 
