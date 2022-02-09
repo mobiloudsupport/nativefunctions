@@ -16,17 +16,15 @@
 				// nativeFunctions.onesignalSetExternalUserId(id);
 				// Triggers the native function for iOS WebKit
 				status.textContent = 'try: ok;';
-				if (window.webkit != undefined) {
+				if (window.nativeFunctions != undefined) {
+					status.textContent = 'android: ok;';
+					onesignalSetExternalUserId(id)
+				} else {
 					status.textContent = 'webkit: ok;';
 					if (window.webkit.messageHandlers.callbackHandler != undefined) {
 						status.textContent = 'webkit full: ok;';
 						window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
 					}
-				}
-				// Triggers the native function for Android
-				if (window.nativeFunctions != undefined) {
-					status.textContent = 'android: ok;';
-					onesignalSetExternalUserId(id)
 				}
 
 				var span = document.getElementById('response');
