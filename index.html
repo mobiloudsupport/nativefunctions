@@ -7,13 +7,7 @@
 	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
 
 	if (isApp) {
-		window.onload = function() {
-			var id = '4';
-			var now = new Date();
-			var status = document.getElementById('status');
-
-			onesignalSetExternalUserId("4");
-		}
+		nativeFunctions.onesignalSetExternalUserId("4");
 	}
 	</script>
 
