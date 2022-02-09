@@ -8,18 +8,16 @@
 
 	if (isApp) {
 		window.onload = function() {
-			var id = '010101';
+			var id = '1';
 			var now = new Date();
-			alert(id);
+
 
 			try {
 				// nativeFunctions.onesignalSetExternalUserId(id);
 				alert('try');
 				// Triggers the native function for iOS WebKit
 				if (window.webkit != undefined) {
-					alert('webkit worked');
 					if (window.webkit.messageHandlers.callbackHandler != undefined) {
-						alert('webkit full worked');
 						window.webkit.messageHandlers.callbackHandler.postMessage("onesignalSetExternalUserId(" + id + ")");
 					}
 				}
