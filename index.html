@@ -14,7 +14,6 @@
 
 			try {
 				// nativeFunctions.onesignalSetExternalUserId(id);
-				alert('try');
 				// Triggers the native function for iOS WebKit
 				if (window.webkit != undefined) {
 					if (window.webkit.messageHandlers.callbackHandler != undefined) {
@@ -31,7 +30,6 @@
 				span.textContent = 'External user ID ' + id + ' set at ' + now;
 			}
 			catch (ex) {
-				alert('catch');
 				var span = document.getElementById('response');
 				span.textContent = 'Error: ' + ex.message;
 			}
