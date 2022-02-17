@@ -23,11 +23,9 @@
 						
 						app.innerHTML = "yes, we are in the app";
 						
-						nativeFunctions.onesignalSetExternalUserId(externalUserId);
-						doesWork.innerHTML = "yes, the native function triggered successfully";
-						
 						if (window.nativeFunctions != undefined) {
-							doesWork.innerHTML = "window.nativeFunctions check worked";
+							nativeFunctions.onesignalSetExternalUserId(externalUserId);
+							doesWork.innerHTML = "yes, the native function triggered successfully";
 						} else {
 							doesWork.innerHTML = "window.nativeFunctions check failed";
 						}
