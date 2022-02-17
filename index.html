@@ -1,28 +1,80 @@
 <html>
 <head>
 <script type="text/javascript"> 
+
+	// Check if the user agent matches the app's user agent
 	const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
-	var extid = "vitortest";
-	var work = "dunno";
-	try {
-		if (isApp) {
-			if (window.nativeFunctions != undefined) {
-				nativeFunctions.onesignalSetExternalUserId(extid);
-				work = "success";
-			}
+
+	// Add the event listener that will trigger once the native functions are ready to be used
+	window.addEventListener("message", (event) => {
+		runNativeFunctions(event);
+	}, false);
+	
+	// Run when the event listener is triggered
+	function runNativeFunctions(event) {
+		try {
+			if (isApp) {
+				if (event.data && event.data == 'nativeFunctionsLoaded') {
+				
+					// Set the external user ID
+					let externalUserId = 1;
+					
+					const work = "not an app";
+					const data = event.data;
+					const source = event.source;
+					const origin = event.origin;
+			 
+					let isApp = document.querySelector('.isApp');
+					let doesWork = document.querySelector('.doesWork');
+					let eventData = document.querySelector('.eventData');
+					let eventSource = document.querySelector('.eventSource');
+					let eventOrigin = document.querySelector('.eventOrigin');
+					let agent = navigator.userAgent;
+					
+					document.getElementById("demo").innerHTML = "User-agent:<br>" + agent;
+					
+					if (window.nativeFunctions != undefined) {
+						nativeFunctions.onesignalSetExternalUserId(extid);
+						doesWork.innerHTML = "yes, the native function triggered successfully";
+					} else {
+						doesWork.innerHTML = "no, window.nativeFunctions is undefined";
+					}
+				}
+			}	
+		} catch (ex) {
+		
+			var span = document.getElementById('response');
+			span.textContent = 'Error: ' + ex.message;
+			console.log(span.textContent);
+			doesWork.innerHTML = "no, something went wrong";
+			
 		}
-	} catch (ex) {
-		var span = document.getElementById('response');
-		span.textContent = 'Error: ' + ex.message;
-		console.log(span.textContent);
-		work = "failed";
+		
 	}
-	</script>
 </head>
 <body>
-Vitor's test page!
-IsApp:<script>document.write(isApp);</script><br/>
-Does it work? <script>document.write(work);</script><br />
-ID: <script>document.write(extid);</script>
+ 
+	<h3>Are we in the app?</h1>
+	<h3 class="isApp">(..)</h1>
+	<br/>
+	 
+	<h3>Are native functions working?</h1>
+	<h3 class="doesWork">(..)</h1>
+	<br/>
+	 
+	<h3>event.data</h1>
+	<h3 class="eventData">(..)</h1>
+	<br/>
+	 
+	<h3>event.source</h1>
+	<h3 class="eventSource">(..)</h1>
+	<br/>
+	 
+	<h3>event.origin</h1>
+	<h3 class="eventOrigin">(..)</h1>
+	<br/>
+	 
+	<p id="demo">User agent</p>
+	
 </body>
 </html>
