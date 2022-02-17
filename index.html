@@ -13,31 +13,11 @@
 		function runNativeFunctions(event) {
 			try {
 				if (isApp) {
+					
 					if (event.data && event.data == 'nativeFunctionsLoaded') {
 					
 						// Set the external user ID
 						let externalUserId = 1;
-						
-						const work = "not an app";
-						const data = event.data;
-						const source = event.source;
-						const origin = event.origin;
-				 
-						let app = document.querySelector('.isApp');
-						let doesWork = document.querySelector('.doesWork');
-						let eventData = document.querySelector('.eventData');
-						let eventSource = document.querySelector('.eventSource');
-						let eventOrigin = document.querySelector('.eventOrigin');
-						let agent = navigator.userAgent;
-						
-						app.innerHTML = isApp ? 'true' : 'false';
-						
-						doesWork.innerHTML = work;
-						eventData.innerHTML = data;
-						eventOrigin.innerHTML = origin;
-						eventSource.innerHTML = source;
-						
-						document.getElementById("demo").innerHTML = "User-agent:<br>" + agent;
 						
 						if (window.nativeFunctions != undefined) {
 							nativeFunctions.onesignalSetExternalUserId(extid);
@@ -62,27 +42,8 @@
 </head>
 <body>
  
-	<h3>Are we in the app?</h1>
-	<h3 class="isApp">No</h1>
-	<br/>
-	 
 	<h3>Are native functions working?</h1>
 	<h3 class="doesWork">No</h1>
-	<br/>
-	 
-	<h3>event.data</h1>
-	<h3 class="eventData">(..)</h1>
-	<br/>
-	 
-	<h3>event.source</h1>
-	<h3 class="eventSource">(..)</h1>
-	<br/>
-	 
-	<h3>event.origin</h1>
-	<h3 class="eventOrigin">(..)</h1>
-	<br/>
-	 
-	<p id="demo">User agent</p>
 	
 </body>
 </html>
