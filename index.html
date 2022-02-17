@@ -13,23 +13,24 @@
 	// Run when the event listener is triggered
 	function runNativeFunctions(event) {
 		try {
+		
+			// Set the external user ID
+			let externalUserId = 1;
+			
+			const work = "not an app";
+			const data = event.data;
+			const source = event.source;
+			const origin = event.origin;
+	 
+			let isApp = document.querySelector('.isApp');
+			let doesWork = document.querySelector('.doesWork');
+			let eventData = document.querySelector('.eventData');
+			let eventSource = document.querySelector('.eventSource');
+			let eventOrigin = document.querySelector('.eventOrigin');
+			let agent = navigator.userAgent;
+		
 			if (isApp) {
 				if (event.data && event.data == 'nativeFunctionsLoaded') {
-				
-					// Set the external user ID
-					let externalUserId = 1;
-					
-					const work = "not an app";
-					const data = event.data;
-					const source = event.source;
-					const origin = event.origin;
-			 
-					let isApp = document.querySelector('.isApp');
-					let doesWork = document.querySelector('.doesWork');
-					let eventData = document.querySelector('.eventData');
-					let eventSource = document.querySelector('.eventSource');
-					let eventOrigin = document.querySelector('.eventOrigin');
-					let agent = navigator.userAgent;
 					
 					document.getElementById("demo").innerHTML = "User-agent:<br>" + agent;
 					
@@ -40,7 +41,8 @@
 						doesWork.innerHTML = "no, window.nativeFunctions is undefined";
 					}
 				}
-			}	
+			}
+			
 		} catch (ex) {
 		
 			var span = document.getElementById('response');
