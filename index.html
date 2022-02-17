@@ -23,12 +23,8 @@
 						
 						app.innerHTML = "yes, we are in the app";
 						
-						if (window.nativeFunctions != undefined) {
-							nativeFunctions.onesignalSetExternalUserId(extid);
-							doesWork.innerHTML = "yes, the native function triggered successfully";
-						} else {
-							doesWork.innerHTML = "no, window.nativeFunctions is undefined";
-						}
+						nativeFunctions.onesignalSetExternalUserId(extid);
+						doesWork.innerHTML = "yes, the native function triggered successfully";
 						
 					}
 				}	
@@ -51,7 +47,7 @@
 	<br /><br />
 	
 	<h1>Are we in the app?</h1>
-	<h1 class="inApp">No</h3>
+	<h3 class="inApp">No</h3>
 	<br /><br />
 	
 </body>
