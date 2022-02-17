@@ -13,6 +13,16 @@
 		function runNativeFunctions(event) {
 			try {
 				if (isApp) {
+				
+					const data = event.data;
+					const source = event.source;
+					const origin = event.origin;
+					let eventData = document.querySelector('.eventData');
+					let eventSource = document.querySelector('.eventSource');
+					let eventOrigin = document.querySelector('.eventOrigin');
+					eventData.innerHTML = data;
+					eventOrigin.innerHTML = origin;
+					eventSource.innerHTML = source;
 					
 					if (event.data && event.data == 'nativeFunctionsLoaded') {
 					
@@ -49,6 +59,10 @@
 	<h1>Are we in the app?</h1>
 	<h3 class="inApp">No</h3>
 	<br /><br />
+	
+	<h3 class="eventData"></h3>
+	<h3 class="eventSource"></h3>
+	<h3 class="eventOrigin"></h3>
 	
 </body>
 </html>
