@@ -29,6 +29,7 @@
 						let eventSource = document.querySelector('.eventSource');
 						let eventOrigin = document.querySelector('.eventOrigin');
 						let agent = navigator.userAgent;
+						
 						app.innerHTML = isApp ? 'true' : 'false';
 						
 						doesWork.innerHTML = work;
@@ -44,6 +45,7 @@
 						} else {
 							doesWork.innerHTML = "no, window.nativeFunctions is undefined";
 						}
+						
 					}
 				}	
 			} catch (ex) {
