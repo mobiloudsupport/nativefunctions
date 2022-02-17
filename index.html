@@ -19,6 +19,9 @@
 						// Set the external user ID
 						let externalUserId = 1;
 						let doesWork = document.querySelector('.doesWork');
+						let app = document.querySelector('.inApp');
+						
+						app.innerHTML = "yes, we are in the app";
 						
 						if (window.nativeFunctions != undefined) {
 							nativeFunctions.onesignalSetExternalUserId(extid);
@@ -43,8 +46,13 @@
 </head>
 <body>
  
-	<h3>Are native functions working?</h1>
-	<h3 class="doesWork">No</h1>
+	<h1>Are native functions working?</h1>
+	<h3 class="doesWork">No</h3>
+	<br /><br />
+	
+	<h1>Are we in the app?</h1>
+	<h1 class="inApp">No</h3>
+	<br /><br />
 	
 </body>
 </html>
