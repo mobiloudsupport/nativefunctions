@@ -23,12 +23,18 @@
 						const source = event.source;
 						const origin = event.origin;
 				 
-						let isApp = document.querySelector('.isApp');
+						let app = document.querySelector('.isApp');
 						let doesWork = document.querySelector('.doesWork');
 						let eventData = document.querySelector('.eventData');
 						let eventSource = document.querySelector('.eventSource');
 						let eventOrigin = document.querySelector('.eventOrigin');
 						let agent = navigator.userAgent;
+						app.innerHTML = isApp ? 'true' : 'false';
+						
+						doesWork.innerHTML = work;
+						eventData.innerHTML = data;
+						eventOrigin.innerHTML = origin;
+						eventSource.innerHTML = source;
 						
 						document.getElementById("demo").innerHTML = "User-agent:<br>" + agent;
 						
