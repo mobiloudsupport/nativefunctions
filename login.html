@@ -1,0 +1,77 @@
+<html>
+<head>
+	<script type="text/javascript"> 
+		// Check if the user agent matches the app's user agent
+		const isApp = navigator.userAgent.toLowerCase().indexOf('canvas') > -1;
+
+		// Add the event listener that will trigger once the native functions are ready to be used
+		window.addEventListener("message", (event) => {
+			runNativeFunctions(event);
+		}, false);
+		
+		// Run when the event listener is triggered
+		function runNativeFunctions(event) {
+			try {
+				if (isApp) {
+					
+					if (event.data && event.data == 'nativeFunctionsLoaded') {
+					
+						let doesWork = document.querySelector('.doesWork');
+						let app = document.querySelector('.inApp');
+						let login = document.querySelector('.loggedIn');
+						let logout = document.querySelector('.logOut');
+						let cookie = document.querySelector('.cookie');
+						app.innerHTML = "yes, we are in the app";
+						cookie.innerHTML = document.cookie;
+						
+						if(!document.cookie.match(/^(.*;)?\s*nativeLogin\s*=\s*[^;]+(.*)?$/)) {
+							login.innerHTML = "Cookie was not set, it will be set now and you will be logged in soon";
+							document.cookie = "nativeLogin=true; expires=Fri, 11 Mar 2023 21:39:12 GMT; path=/";
+							
+							if (window.nativeFunctions != undefined) {
+								doesWork.innerHTML = "yes, the native function triggered successfully";
+								setTimeout( function() { nativeFunctions.login(); }, 3000);								
+							} else {
+								doesWork.innerHTML = "window.nativeFunctions check failed";
+							}							
+							
+						} else {
+							login.innerHTML = "Cookie is set";
+							login.innerHTML = "<button onClick=\"document.cookie = 'nativeLogin=false; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'; setTimeout( function() { nativeFunctions.logout(); }, 1000);\">Delete Cookie and Logout</button>";
+						}
+						
+					}
+					
+				}	
+			} catch (ex) {
+			
+				var span = document.getElementById('response');
+				span.textContent = 'Error: ' + ex.message;
+				console.log(span.textContent);
+				doesWork.innerHTML = "no, something went wrong";
+				
+			}
+			
+		}
+	</script>
+</head>
+<body>
+ 
+	<h1>Are native functions working?</h1>
+	<h3 class="doesWork">No</h3>
+	<br /><br />
+	
+	<h1>Are we in the app?</h1>
+	<h3 class="inApp">No</h3>
+	<br /><br />
+	
+	<h1>Is user logged-in?</h1>
+	<h3 class="loggedIn">No</h3>
+	<h3 class="logOut"></h3>
+	<br /><br />
+	
+	<h1>Cokies?</h1>
+	<h3 class="cookies">Empty</h3>
+	<br /><br />	
+</body>
+</html>
