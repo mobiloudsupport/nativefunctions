@@ -9,6 +9,23 @@
 			runNativeFunctions(event);
 		}, false);
 		
+		function getCookie(name) {
+			var cookie = document.cookie;
+			var prefix = name + "=";
+			var begin = cookie.indexOf("; " + prefix);
+			if (begin == -1) {
+				begin = cookie.indexOf(prefix);
+				if (begin != 0) return null;
+			} else {
+				begin += 2;
+				var end = document.cookie.indexOf(";", begin);
+				if (end == -1) {
+				end = cookie.length;
+				}
+			}
+			return unescape(cookie.substring(begin + prefix.length, end));
+		} 
+		
 		// Run when the event listener is triggered
 		function runNativeFunctions(event) {
 			try {
@@ -21,11 +38,11 @@
 						let login = document.querySelector('.loggedIn');
 						let logout = document.querySelector('.logOut');
 						let cookie = document.querySelector('.cookie');
-						let cookieCheck = (document.cookie.match(/^(?:.*;)?\s*nativeLogin\s*=\s*([^;]+)(?:.*)?$/)||[,null])[1];
+						let cookieCheck = getCookie('nativeLogin');
 						app.innerHTML = "yes, we are in the app, " + cookieCheck;
 						cookie.innerHTML = document.cookie;
 						
-						if (document.cookie.indexOf('nativeLogin') == -1 ) {
+						if (!cookieCheck) {
 							login.innerHTML = "Cookie was not set, it will be set now and you will be logged in soon";
 							document.cookie = "nativeLogin=true; expires=Fri, 11 Mar 2023 21:39:12 GMT; path=/";
 							
@@ -75,6 +92,6 @@
 	<h3 class="cookies">Empty</h3>
 	<br /><br />	
 	
-	<h3>VERSION 1</h3>
+	<h3>VERSION 2</h3>
 </body>
 </html>
