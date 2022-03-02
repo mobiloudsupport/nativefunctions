@@ -22,7 +22,7 @@
 						let logout = document.querySelector('.logOut');
 						let cookie = document.querySelector('.cookie');
 						let cookieCheck = (document.cookie.match(/^(?:.*;)?\s*nativeLogin\s*=\s*([^;]+)(?:.*)?$/)||[,null])[1];
-						app.innerHTML = "yes, we are in the app";
+						app.innerHTML = "yes, we are in the app, " + cookieCheck;
 						cookie.innerHTML = document.cookie;
 						
 						if(!cookieCheck) {
