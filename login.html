@@ -25,7 +25,7 @@
 						app.innerHTML = "yes, we are in the app, " + cookieCheck;
 						cookie.innerHTML = document.cookie;
 						
-						if(cookieCheck === null) {
+						if (document.cookie.indexOf('nativeLogin') == -1 ) {
 							login.innerHTML = "Cookie was not set, it will be set now and you will be logged in soon";
 							document.cookie = "nativeLogin=true; expires=Fri, 11 Mar 2023 21:39:12 GMT; path=/";
 							
@@ -71,8 +71,10 @@
 	<h3 class="logOut"></h3>
 	<br /><br />
 	
-	<h1>Cokies?</h1>
+	<h1>Cookies?</h1>
 	<h3 class="cookies">Empty</h3>
 	<br /><br />	
+	
+	<h3>VERSION 1</h3>
 </body>
 </html>
