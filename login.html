@@ -21,10 +21,11 @@
 						let login = document.querySelector('.loggedIn');
 						let logout = document.querySelector('.logOut');
 						let cookie = document.querySelector('.cookie');
+						let cookieCheck = (document.cookie.match(/^(?:.*;)?\s*nativeLogin\s*=\s*([^;]+)(?:.*)?$/)||[,null])[1];
 						app.innerHTML = "yes, we are in the app";
 						cookie.innerHTML = document.cookie;
 						
-						if(!document.cookie.match(/^(.*;)?\s*nativeLogin\s*=\s*[^;]+(.*)?$/)) {
+						if(!cookieCheck) {
 							login.innerHTML = "Cookie was not set, it will be set now and you will be logged in soon";
 							document.cookie = "nativeLogin=true; expires=Fri, 11 Mar 2023 21:39:12 GMT; path=/";
 							
